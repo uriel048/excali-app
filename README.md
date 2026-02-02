@@ -1,16 +1,84 @@
-# React + Vite
+# ExcaliApp - Excalidraw Desktop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Electron](https://img.shields.io/badge/Electron-40.0.0-47848F.svg)
+![React](https://img.shields.io/badge/React-19.2.0-61DAFB.svg)
 
-Currently, two official plugins are available:
+Aplicativo desktop do Excalidraw construído com Electron, React e Vite. Uma ferramenta poderosa para criar diagramas, esboços e quadros brancos virtuais.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📥 Download
 
-## React Compiler
+**[⬇️ Baixar ExcaliApp v1.0.0 (Windows)](https://github.com/uriel048/excali-app/releases/download/v1.0.0/ExcaliApp.1.0.0.exe)**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O arquivo é portátil - não precisa instalação! Basta baixar e executar.
 
-## Expanding the ESLint configuration
+## ✨ Características
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🖼️ Interface completa do Excalidraw
+- 💾 Funciona offline
+- 🚀 Aplicativo standalone - não precisa de navegador
+- 📦 Executável portátil - sem instalação necessária
+- 🎨 Todas as ferramentas de desenho do Excalidraw
+
+## 🛠️ Desenvolvimento
+
+### Pré-requisitos
+
+- Node.js (versão 16 ou superior)
+- npm ou yarn
+
+### Instalação
+
+```bash
+# Clone o repositório
+git clone https://github.com/uriel048/excali-app.git
+
+# Entre no diretório
+cd excali-app
+
+# Instale as dependências
+npm install
+```
+
+### Executar em desenvolvimento
+
+```bash
+# Build da aplicação web
+npm run build
+
+# Executar o Electron
+npm run electron
+
+# Ou executar tudo de uma vez
+npm run app
+```
+
+### Gerar executável
+
+```bash
+# Gerar executável Windows portátil
+npm run dist
+```
+
+O executável será gerado em `dist-electron/ExcaliApp 1.0.0.exe`
+
+## 📦 Stack Tecnológica
+
+- **[Electron](https://www.electronjs.org/)** - Framework para criar aplicativos desktop
+- **[React](https://react.dev/)** - Biblioteca JavaScript para interfaces
+- **[Vite](https://vitejs.dev/)** - Build tool moderna e rápida
+- **[@excalidraw/excalidraw](https://github.com/excalidraw/excalidraw)** - Ferramenta de diagramação
+
+## 📄 Licença
+
+Este projeto é uma implementação desktop do Excalidraw para uso pessoal.
+
+## 👤 Autor
+
+**Uriel Ventura**
+- GitHub: [@uriel048](https://github.com/uriel048)
+
+## 🙏 Créditos
+
+- [Excalidraw](https://excalidraw.com/) - Pela incrível ferramenta de diagramação
+- Comunidade open source
