@@ -6,13 +6,33 @@
 
 Aplicativo desktop do Excalidraw construído com Electron, React e Vite. Uma ferramenta poderosa para criar diagramas, esboços e quadros brancos virtuais.
 
-## 📥 Download
+## 📥 Como usar
 
-**[⬇️ Baixar ExcaliApp v1.0.0 (Windows)](https://github.com/uriel048/excali-app/releases/download/v1.0.0/ExcaliApp.1.0.0.exe)**
+### Opção 1: Compilar o executável (Recomendado)
 
-O arquivo é portátil - não precisa instalação! Basta baixar e executar.
+```bash
+# Clone o repositório
+git clone https://github.com/uriel048/excali-app.git
+cd excali-app
 
-## ✨ Características
+# Instale as dependências
+npm install
+
+# Gere o executável
+npm run dist
+```
+
+O arquivo `ExcaliApp 1.0.0.exe` será criado em `dist-electron/` - pronto para usar sem instalação!
+
+### Opção 2: Executar em desenvolvimento
+
+```bash
+# Instale as dependências
+npm install
+
+# Execute a aplicação
+npm run app
+```
 
 - 🖼️ Interface completa do Excalidraw
 - 💾 Funciona offline
