@@ -8,6 +8,7 @@ function createWindow() {
     height: 900,
     frame: false,
     transparent: false,
+    icon: path.join(__dirname, "public", "icon.png"),
     webPreferences: {
       preload: path.join(__dirname, "electron-preload.cjs"),
       contextIsolation: true,
@@ -15,6 +16,17 @@ function createWindow() {
       webSecurity: true,
       allowRunningInsecureContent: false
     }
+  });
+
+  // Trata abertura de novas janelas/abas
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      // Abre links externos no navegador padrão
+      shell.openExternal(url);
+      return { action: 'deny' };
+    }
+    // Permite abertura de janelas internas (se necessário)
+    return { action: 'allow' };
   });
 
   win.webContents.on('did-fail-load', (event, errorCode, errorDescription) => {

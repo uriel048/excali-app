@@ -29,9 +29,9 @@ function App() {
 
   const handleGitHubClick = () => {
     if (window.electronAPI) {
-      window.electronAPI.openExternal('https://github.com/uriel048');
+      window.electronAPI.openExternal('https://github.com/uriel048/excali-app');
     } else {
-      window.open('https://github.com/uriel048', '_blank');
+      window.open('https://github.com/uriel048/excali-app', '_blank');
     }
   };
 
@@ -64,7 +64,6 @@ function App() {
       <div className="canvas-wrapper">
         <Excalidraw 
           langCode="pt-BR"
-          theme={theme}
           initialData={{ appState: { theme } }}
           onChange={(elements, state) => {
             if (state.theme !== theme) {
@@ -82,7 +81,7 @@ function App() {
             <MainMenu.DefaultItems.Help />
             <MainMenu.DefaultItems.ClearCanvas />
             <MainMenu.Separator />
-            <MainMenu.Item icon={GitHubIcon} onSelect={handleGitHubClick}>
+            <MainMenu.Item icon={<GitHubIcon />} onSelect={handleGitHubClick}>
               GitHub
             </MainMenu.Item>
             <MainMenu.Separator />
