@@ -4,7 +4,7 @@
 ![Electron](https://img.shields.io/badge/Electron-40.0.0-47848F.svg)
 ![React](https://img.shields.io/badge/React-19.2.0-61DAFB.svg)
 
-Aplicativo desktop do Excalidraw construído com Electron, React e Vite. Uma ferramenta poderosa para criar diagramas, esboços e quadros brancos virtuais.
+Aplicativo desktop do Excalidraw construído com Electron, React e Vite. Uma ferramenta para criar diagramas, esboços e quadros brancos virtuais.
 
 ## 📥 Como usar
 
