@@ -1,6 +1,6 @@
 # ExcaliApp - Excalidraw Desktop
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
 ![Electron](https://img.shields.io/badge/Electron-40.0.0-47848F.svg)
 ![React](https://img.shields.io/badge/React-19.2.0-61DAFB.svg)
 
@@ -22,7 +22,7 @@ npm install
 npm run dist
 ```
 
-O arquivo `ExcaliApp 1.0.0.exe` será criado em `dist-electron/` - pronto para usar sem instalação!
+O arquivo `ExcaliApp 1.0.1.exe` será criado em `dist-electron/` - pronto para usar sem instalação!
 
 ### Opção 2: Executar em desenvolvimento
 
