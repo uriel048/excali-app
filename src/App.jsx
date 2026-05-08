@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { supabase } from "./supabase";
 import { Excalidraw, MainMenu } from "@excalidraw/excalidraw";
 import "@excalidraw/excalidraw/index.css";
 
 function App() {
   const [theme, setTheme] = useState("light");
+
+  const excalidrawRef = useRef(null);
+
+  const roomId =
+    window.location.pathname.replace("/", "") || "default";
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("excali-theme");
@@ -62,13 +68,25 @@ function App() {
       </div>
 
       <div className="canvas-wrapper">
-        <Excalidraw 
+        <Excalidraw
           langCode="pt-BR"
           initialData={{ appState: { theme } }}
-          onChange={(elements, state) => {
+          excalidrawAPI={(api) => {
+            excalidrawRef.current = api;
+          }}
+          onChange={async (elements, state) => {
             if (state.theme !== theme) {
               setTheme(state.theme);
             }
+
+            await supabase.from("drawings").upsert({
+              id: roomId,
+              data: {
+                elements,
+                appState: state,
+              },
+              updated_at: new Date(),
+            });
           }}
         >
           <MainMenu>
