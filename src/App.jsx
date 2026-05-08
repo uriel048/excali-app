@@ -169,33 +169,6 @@ function App() {
         </div>
       </div>
 
-      <div
-        style={{
-          position: "absolute",
-          top: 45,
-          right: 20,
-          zIndex: 1000,
-        }}
-      >
-        <button
-          onClick={saveToSupabase}
-          disabled={isSaving}
-          style={{
-            padding: "8px 14px",
-            borderRadius: "8px",
-            border: "none",
-            cursor: "pointer",
-            fontWeight: 600,
-          }}
-        >
-          {isSaving
-            ? "Salvando..."
-            : pendingSave
-            ? "Salvar alterações"
-            : "Salvo"}
-        </button>
-      </div>
-
       <div className="canvas-wrapper">
         <Excalidraw
           key={roomId}
@@ -219,6 +192,13 @@ function App() {
           <MainMenu>
             <MainMenu.DefaultItems.LoadScene />
             <MainMenu.DefaultItems.SaveToActiveFile />
+            <MainMenu.Item onSelect={saveToSupabase}>
+              {isSaving
+                ? "Salvando..."
+                : pendingSave
+                ? "Salvar alterações"
+                : "Salvo"}
+            </MainMenu.Item>
             <MainMenu.DefaultItems.Export />
             <MainMenu.DefaultItems.SaveAsImage />
             <MainMenu.Separator />
