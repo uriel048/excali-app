@@ -1,13 +1,15 @@
 {
   "name": "excali-app",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Aplicativo Excalidraw Desktop",
   "author": "Uriel Ventura",
   "type": "module",
   "main": "electron-main.cjs",
   "scripts": {
+    "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "electron": "electron .",
     "app": "npm run build && npm run electron",
     "dist": "npm run build && electron-builder --win"
@@ -38,7 +40,7 @@
     "appId": "com.excaliapp.desktop",
     "productName": "ExcaliApp",
     "directories": {
-      "output": "dist-electron"
+      "output": "dist-build"
     },
     "files": [
       "dist/**/*",
