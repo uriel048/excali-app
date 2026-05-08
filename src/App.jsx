@@ -9,7 +9,7 @@ function App() {
   const excalidrawRef = useRef(null);
 
   const roomId =
-    window.location.pathname.replace("/", "") || "default";
+    window.location.hash.replace("#/", "") || "default";
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("excali-theme");
