@@ -5,6 +5,8 @@ import "@excalidraw/excalidraw/index.css";
 
 function App() {
   const [theme, setTheme] = useState("light");
+  const [isSaving, setIsSaving] = useState(false);
+  const [pendingSave, setPendingSave] = useState(false);
 
   const [roomId, setRoomId] = useState(
     window.location.hash.replace("#/", "") || "default"
@@ -48,6 +50,8 @@ function App() {
           },
         });
       }
+
+      setPendingSave(false);
     };
 
     loadScene();
@@ -72,6 +76,41 @@ function App() {
       localStorage.setItem("excali-theme", theme);
     }
   }, [theme]);
+
+  const saveToSupabase = async () => {
+    if (!excalidrawRef.current) return;
+
+    try {
+      setIsSaving(true);
+
+      const scene = excalidrawRef.current.getSceneElements();
+      const appState = excalidrawRef.current.getAppState();
+
+      const { error } = await supabase
+        .from("drawings")
+        .upsert({
+          id: roomId,
+          data: {
+            elements: scene,
+            appState: {
+              theme: appState.theme,
+            },
+          },
+          updated_at: new Date().toISOString(),
+        });
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      setPendingSave(false);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const handleControl = (action) => {
     if (window.electronAPI) {
@@ -130,6 +169,33 @@ function App() {
         </div>
       </div>
 
+      <div
+        style={{
+          position: "absolute",
+          top: 45,
+          right: 20,
+          zIndex: 1000,
+        }}
+      >
+        <button
+          onClick={saveToSupabase}
+          disabled={isSaving}
+          style={{
+            padding: "8px 14px",
+            borderRadius: "8px",
+            border: "none",
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          {isSaving
+            ? "Salvando..."
+            : pendingSave
+            ? "Salvar alterações"
+            : "Salvo"}
+        </button>
+      </div>
+
       <div className="canvas-wrapper">
         <Excalidraw
           key={roomId}
@@ -142,31 +208,12 @@ function App() {
           excalidrawAPI={(api) => {
             excalidrawRef.current = api;
           }}
-          onChange={async (elements, state) => {
-            try {
-              if (state.theme !== theme) {
-                setTheme(state.theme);
-              }
-
-              const { error } = await supabase
-                .from("drawings")
-                .upsert({
-                  id: roomId,
-                  data: {
-                    elements,
-                    appState: {
-                      theme: state.theme,
-                    },
-                  },
-                  updated_at: new Date().toISOString(),
-                });
-
-              if (error) {
-                console.error(error);
-              }
-            } catch (err) {
-              console.error(err);
+          onChange={(elements, state) => {
+            if (state.theme !== theme) {
+              setTheme(state.theme);
             }
+
+            setPendingSave(true);
           }}
         >
           <MainMenu>
