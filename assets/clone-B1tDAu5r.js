@@ -1,1 +1,0 @@
-import{S as e}from"./graphlib-DCpVoxcs.js";var t=4;function n(n){return e(n,t)}var r=n;export{r as t};
