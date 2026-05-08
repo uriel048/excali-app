@@ -1,0 +1,1 @@
+import{S as e}from"./graphlib-CCc-l8ip.js";var t=4;function n(n){return e(n,t)}var r=n;export{r as t};
