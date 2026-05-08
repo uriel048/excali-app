@@ -6,10 +6,25 @@ import "@excalidraw/excalidraw/index.css";
 function App() {
   const [theme, setTheme] = useState("light");
 
+  const [roomId, setRoomId] = useState(
+    window.location.hash.replace("#/", "") || "default"
+  );
+
   const excalidrawRef = useRef(null);
 
-  const roomId =
-    window.location.hash.replace("#/", "") || "default";
+  useEffect(() => {
+    const onHashChange = () => {
+      setRoomId(
+        window.location.hash.replace("#/", "") || "default"
+      );
+    };
+
+    window.addEventListener("hashchange", onHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", onHashChange);
+    };
+  }, []);
 
   useEffect(() => {
     const loadScene = async () => {
@@ -24,10 +39,13 @@ function App() {
         return;
       }
 
-      if (data?.data && excalidrawRef.current) {
+      if (excalidrawRef.current) {
         excalidrawRef.current.updateScene({
-          elements: data.data.elements || [],
-          appState: data.data.appState || {},
+          elements: data?.data?.elements || [],
+          appState: {
+            theme,
+            ...(data?.data?.appState || {}),
+          },
         });
       }
     };
@@ -107,11 +125,14 @@ function App() {
           />
         </div>
 
-        <div className="title-text">Excalidraw</div>
+        <div className="title-text">
+          Excalidraw - {roomId}
+        </div>
       </div>
 
       <div className="canvas-wrapper">
         <Excalidraw
+          key={roomId}
           langCode="pt-BR"
           initialData={{
             appState: {
